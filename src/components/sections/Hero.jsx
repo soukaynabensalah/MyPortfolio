@@ -1,0 +1,115 @@
+import { motion } from "framer-motion";
+import { useTypewriter } from "../../hooks/useTypewriter";
+import { roles } from "../../data/portfolio";
+import ThreeCanvas from "./ThreeCanvas";
+
+/**
+ * Scrolls to the section with the given id.
+ */
+function scrollToSection(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
+
+/** Corner decoration positions and border config */
+const corners = [
+  { style: { top: 80, left: 30 }, borders: { borderTop: "1px solid var(--accent)", borderLeft: "1px solid var(--accent)" } },
+  { style: { top: 80, right: 30 }, borders: { borderTop: "1px solid var(--accent)", borderRight: "1px solid var(--accent)" } },
+  { style: { bottom: 30, left: 30 }, borders: { borderBottom: "1px solid var(--accent)", borderLeft: "1px solid var(--accent)" } },
+  { style: { bottom: 30, right: 30 }, borders: { borderBottom: "1px solid var(--accent)", borderRight: "1px solid var(--accent)" } },
+];
+
+export default function Hero() {
+  const role = useTypewriter(roles);
+
+  return (
+    <section id="accueil" className="hero">
+      {/* ThreeCanvas moved inside hero__right below */}
+
+      {/* Grid lines */}
+      <div className="hero__grid" />
+
+      {/* Scanline */}
+      <div className="hero__scanline" />
+
+      {/* Two-column layout */}
+      <div className="hero__layout">
+        {/* Left: text content */}
+        <div className="hero__left">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="hero__status"
+          >
+            ── DISPONIBLE POUR PROJETS ──
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="hero__title"
+          >
+            BEN <br /> SALAH
+            <br />
+            <span className="hero__title-outline">SOUKAYNA</span>
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            className="hero__role"
+          >
+            <span className="hero__role-arrow">{">"}</span> {role}
+            <span className="hero__role-cursor">█</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 0.8 }}
+            className="hero__buttons"
+          >
+            <button
+              className="hero__btn hero__btn--primary"
+              onClick={() => scrollToSection("projets")}
+            >
+              VOIR MES PROJETS
+            </button>
+            <button
+              className="hero__btn hero__btn--secondary"
+              onClick={() => scrollToSection("contact")}
+            >
+              ME CONTACTER
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Right: 3D sphere */}
+        <div className="hero__right">
+          <ThreeCanvas />
+        </div>
+      </div>
+
+      {/* Corner decorations */}
+      {corners.map((corner, i) => (
+        <div
+          key={i}
+          className="hero__corner"
+          style={{ ...corner.style, ...corner.borders }}
+        />
+      ))}
+
+      {/* Scroll indicator */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="hero__scroll-indicator"
+      >
+        SCROLL
+        <br />▼
+      </motion.div>
+    </section>
+  );
+}
