@@ -68,6 +68,4 @@ export const stats = [
 export const roles = [
   "Développeur Full-Stack",
   "Creative Technologist",
-  "UI/UX Engineer",
-  "3D Web Artist",
 ];

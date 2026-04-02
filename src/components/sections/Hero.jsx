@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Mouse, ChevronDown } from "lucide-react";
 import { useTypewriter } from "../../hooks/useTypewriter";
 import { roles } from "../../data/portfolio";
 import ThreeCanvas from "./ThreeCanvas";
@@ -65,6 +66,16 @@ export default function Hero() {
             <span className="hero__role-cursor">█</span>
           </motion.div>
 
+          {/* Accroche métier (Value Proposition) */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            style={{ marginTop: "1.5rem", color: "var(--muted)", maxWidth: "85%", lineHeight: "1.6", fontSize: "0.95rem" }}
+          >
+            Passionnée par la création d'expériences web innovantes et intuitives. Je transforme vos idées en solutions numériques élégantes et performantes.
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,12 +114,21 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         className="hero__scroll-indicator"
       >
-        SCROLL
-        <br />▼
+        <span>SCROLL</span>
+        <div className="hero__scroll-icon">
+          <Mouse size={24} strokeWidth={1.5} />
+          <motion.div
+            animate={{ y: [0, 4, 0], opacity: [0.3, 1, 0.3] }}
+            transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
+            style={{ display: "flex", justifyContent: "center", marginTop: "-6px" }}
+          >
+            <ChevronDown size={16} strokeWidth={2.5} />
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );

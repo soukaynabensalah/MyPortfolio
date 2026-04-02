@@ -66,30 +66,17 @@ function createIconTexture(THREE, img, tech) {
 
   ctx.clearRect(0, 0, size, size);
 
-  // ── Glowing circular backdrop ──────────────────────────────────────
-  const gradient = ctx.createRadialGradient(
-    size / 2, size / 2, 0,
-    size / 2, size / 2, size / 2.2
-  );
-  gradient.addColorStop(0, tech.color + "20");
-  gradient.addColorStop(0.5, tech.color + "10");
-  gradient.addColorStop(1, "transparent");
-  ctx.fillStyle = gradient;
+  // ── Dark glass circle ──────────────────────────────────────────────
+  ctx.fillStyle = "rgba(5, 5, 12, 0.7)";
   ctx.beginPath();
-  ctx.arc(size / 2, size / 2, size / 2.2, 0, Math.PI * 2);
+  ctx.arc(size / 2, size / 2, size / 2.6, 0, Math.PI * 2);
   ctx.fill();
 
-  // Subtle glass circle
-  ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+  // Highlight/Border ring
+  ctx.strokeStyle = tech.color + "50";
+  ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.arc(size / 2, size / 2, size / 3, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Border ring
-  ctx.strokeStyle = tech.color + "40";
-  ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.arc(size / 2, size / 2, size / 3, 0, Math.PI * 2);
+  ctx.arc(size / 2, size / 2, size / 2.6, 0, Math.PI * 2);
   ctx.stroke();
 
   if (img) {
@@ -189,7 +176,7 @@ export default function ThreeCanvas() {
         color: 0x7affd4,
         wireframe: true,
         transparent: true,
-        opacity: 0.06,
+        opacity: 0.015,
       });
       const wireframeSphere = new THREE.Mesh(geoSphere, matSphere);
       wireframeGroup.add(wireframeSphere);
@@ -236,27 +223,6 @@ export default function ThreeCanvas() {
         iconsGroup.add(sprite);
         iconSprites.push(sprite);
       });
-
-      // ── Connection lines between icons (static, decorative) ────────
-      const lineMat = new THREE.LineBasicMaterial({
-        color: 0x7affd4,
-        transparent: true,
-        opacity: 0.06,
-      });
-
-      for (let i = 0; i < iconSprites.length; i++) {
-        for (let j = i + 1; j < iconSprites.length; j++) {
-          const a = iconSprites[i].position;
-          const b = iconSprites[j].position;
-          const dist = a.distanceTo(b);
-          if (dist < SPHERE_RADIUS * 1.1) {
-            const lineGeo = new THREE.BufferGeometry().setFromPoints([
-              a.clone(), b.clone(),
-            ]);
-            iconsGroup.add(new THREE.Line(lineGeo, lineMat));
-          }
-        }
-      }
 
       // ── Mouse interaction ──────────────────────────────────────────
       let mx = 0;

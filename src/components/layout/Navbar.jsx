@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { navItems } from "../../data/portfolio";
+import { Home, Folder, Wrench, PenLine, ExternalLink } from "lucide-react";
 
 /**
  * Scrolls to the section with the given id.
@@ -8,38 +8,52 @@ function scrollToSection(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
-/**
- * Converts a nav item label to a section id.
- */
-function toSectionId(label) {
-  return label.toLowerCase().replace("é", "e").replace("è", "e");
-}
+const navConfig = [
+  { label: "ACCUEIL", icon: Home, id: "accueil" },
+  { label: "PROJETS", icon: Folder, id: "projets" },
+  { label: "COMPÉTENCES", icon: Wrench, id: "competences" },
+  { label: "CONTACT", icon: PenLine, id: "contact" },
+];
 
 export default function Navbar({ activeSection }) {
   return (
-    <motion.nav
-      className="navbar"
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className="navbar__logo">◈ AXIOM</div>
+    <>
+      <motion.nav
+        className="floating-nav"
+        initial={{ y: -80, opacity: 0, x: "-50%" }}
+        animate={{ y: 0, opacity: 1, x: "-50%" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="floating-nav__inner">
+          {navConfig.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeSection === item.label;
+            return (
+              <div key={item.id} className="floating-nav__item-wrapper">
+                <button
+                  className={`floating-nav__link ${isActive ? "floating-nav__link--active" : ""}`}
+                  onClick={() => scrollToSection(item.id)}
+                  aria-label={item.label}
+                >
+                  <Icon size={20} strokeWidth={2.5} />
+                </button>
+                <div className="floating-nav__tooltip">{item.label}</div>
+              </div>
+            );
+          })}
 
-      <div className="navbar__links">
-        {navItems.map((item) => (
-          <button
-            key={item}
-            className={`navbar__link ${activeSection === item ? "navbar__link--active" : ""}`}
-            onClick={() => scrollToSection(toSectionId(item))}
+          <div className="floating-nav__divider" />
+
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="floating-nav__resume"
           >
-            {item}
-          </button>
-        ))}
-      </div>
-
-      <div className="navbar__year">
-        PORTFOLIO <span>2025</span>
-      </div>
-    </motion.nav>
+            Resume <ExternalLink size={14} />
+          </a>
+        </div>
+      </motion.nav>
+    </>
   );
 }

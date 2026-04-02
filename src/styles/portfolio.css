@@ -17,7 +17,7 @@
   --accent2: #ff6b6b;
   --accent3: #a78bfa;
   --text: #e8e8f0;
-  --muted: #5a5a72;
+  --muted: #a1a1aa;
   --border: rgba(122, 255, 212, 0.12);
 }
 
@@ -167,10 +167,10 @@ body::after {
   }
 }
 
-/* ── Navbar ─────────────────────────────────────────────────────────── */
+/* ── Header Top (Logo & Resume) ─────────────────────────────────────── */
 
-.navbar {
-  position: fixed;
+.header-top {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -178,49 +178,121 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 3rem;
-  background: rgba(5, 5, 8, 0.7);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  padding: 2.2rem 3rem;
+  pointer-events: none; /* Let clicks pass through empty space */
 }
 
-.navbar__logo {
+.header-top__logo {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 1.2rem;
   letter-spacing: 0.2em;
   color: var(--accent);
+  pointer-events: auto;
 }
 
-.navbar__links {
+/* ── Floating Pill Navbar ───────────────────────────────────────────── */
+
+.floating-nav {
+  position: fixed;
+  top: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 110;
+}
+
+.floating-nav__inner {
   display: flex;
-  gap: 2.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  padding: 0.6rem 1rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-.navbar__link {
+.floating-nav__item-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.floating-nav__link {
   background: none;
   border: none;
   cursor: none;
+  color: var(--muted);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-nav__link:hover {
+  color: var(--accent);
+  background: rgba(122, 255, 212, 0.1);
+}
+
+.floating-nav__link--active {
+  color: var(--accent);
+  background: rgba(122, 255, 212, 0.15);
+}
+
+.floating-nav__tooltip {
+  position: absolute;
+  top: calc(100% + 15px);
+  background: rgba(30, 30, 30, 0.9);
+  color: var(--text);
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: all 0.2s;
+  pointer-events: none;
+}
+
+.floating-nav__item-wrapper:hover .floating-nav__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.floating-nav__divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 0.2rem;
+}
+
+.floating-nav__resume {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--muted);
-  transition: color 0.3s;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 45px;
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: none;
 }
 
-.navbar__link:hover,
-.navbar__link--active {
-  color: var(--accent);
-}
-
-.navbar__year {
-  font-size: 0.65rem;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-}
-
-.navbar__year span {
-  color: var(--accent);
+.floating-nav__resume:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* ── Scroll Container ───────────────────────────────────────────────── */
@@ -427,15 +499,23 @@ body::after {
 
 .hero__scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  opacity: 0.85;
+}
+
+.hero__scroll-icon {
+  margin-top: 0.25rem;
   color: var(--muted);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-align: center;
-  opacity: 0.6;
 }
 
 /* ── Hero Responsive ────────────────────────────────────────────────── */
