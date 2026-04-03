@@ -12,9 +12,9 @@ export default function Contact() {
         >
           <div className="contact__label">04 / CONTACT</div>
           <h2 className="contact__title">
-            TRAVAILLONS
+            LET'S WORK
             <br />
-            <span className="contact__title-outline">ENSEMBLE</span>
+            <span className="contact__title-outline">TOGETHER</span>
           </h2>
 
           <div className="contact__list">
@@ -42,7 +42,7 @@ export default function Contact() {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            ENVOYER UN MESSAGE →
+            SEND A MESSAGE →
           </motion.button>
         </motion.div>
       </div>

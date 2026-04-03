@@ -4,28 +4,28 @@ export const projects = [
   {
     id: "01",
     title: "Nebula OS",
-    desc: "Interface système futuriste avec visualisation de données en temps réel",
+    desc: "Futuristic system interface with real-time data visualization",
     tags: ["React", "WebGL", "GSAP"],
     color: "#7affd4",
   },
   {
     id: "02",
     title: "Synthwave Studio",
-    desc: "DAW web avec synthèse sonore visuelle et collaboration en temps réel",
+    desc: "Web DAW with visual sound synthesis and real-time collaboration",
     tags: ["Web Audio API", "Canvas", "WebSockets"],
     color: "#ff6b6b",
   },
   {
     id: "03",
     title: "Quantum Grid",
-    desc: "Marketplace 3D immersive pour NFTs avec navigation spatiale",
+    desc: "Immersive 3D marketplace for NFTs with spatial navigation",
     tags: ["Three.js", "Next.js", "Solidity"],
     color: "#a78bfa",
   },
   {
     id: "04",
     title: "Phantom Auth",
-    desc: "Système d'authentification biométrique basé sur les mouvements de souris",
+    desc: "Biometric authentication system based on mouse movements",
     tags: ["ML", "TypeScript", "Node.js"],
     color: "#fbbf24",
   },
@@ -46,7 +46,7 @@ export const skills = [
   "Rust",
 ];
 
-export const navItems = ["ACCUEIL", "PROJETS", "COMPÉTENCES", "CONTACT"];
+export const navItems = ["HOME", "PROJECTS", "SKILLS", "CONTACT"];
 
 export const marqueeItems = [
   "REACT", "◈", "THREE.JS", "◈", "GSAP", "◈", "WEBGL", "◈",
@@ -60,12 +60,12 @@ export const contactInfo = [
 ];
 
 export const stats = [
-  ["40+", "Projets livrés"],
-  ["5", "Années d'expérience"],
-  ["100%", "Satisfaction client"],
+  ["40+", "Projects delivered"],
+  ["5", "Years of experience"],
+  ["100%", "Client satisfaction"],
 ];
 
 export const roles = [
-  "Développeur Full-Stack",
+  "Full-Stack Developer",
   "Creative Technologist",
 ];

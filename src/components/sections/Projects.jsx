@@ -6,18 +6,18 @@ export default function Projects() {
   const [hoveredProject, setHoveredProject] = useState(null);
 
   return (
-    <section id="projets" className="projects">
+    <section id="projects" className="projects">
       <motion.div
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="projects__label">02 / PROJETS SÉLECTIONNÉS</div>
+        <div className="projects__label">02 / SELECTED PROJECTS</div>
         <h2 className="projects__title">
-          ŒUVRES
+          DIGITAL
           <br />
-          <span>DIGITALES</span>
+          <span>ARTWORKS</span>
         </h2>
       </motion.div>
 

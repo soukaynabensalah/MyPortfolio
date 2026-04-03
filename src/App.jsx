@@ -18,7 +18,7 @@ import Contact from "./components/sections/Contact";
 import "./styles/portfolio.css";
 
 export default function App() {
-  const [activeSection] = useState("ACCUEIL");
+  const [activeSection] = useState("HOME");
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({ container: containerRef });

@@ -179,7 +179,8 @@ body::after {
   align-items: center;
   justify-content: space-between;
   padding: 2.2rem 3rem;
-  pointer-events: none; /* Let clicks pass through empty space */
+  pointer-events: none;
+  /* Let clicks pass through empty space */
 }
 
 .header-top__logo {

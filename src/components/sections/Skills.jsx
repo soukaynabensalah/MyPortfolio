@@ -3,18 +3,18 @@ import { skills, stats } from "../../data/portfolio";
 
 export default function Skills() {
   return (
-    <section id="competences" className="skills">
+    <section id="skills" className="skills">
       <div className="skills__inner">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <div className="skills__label">03 / COMPÉTENCES</div>
+          <div className="skills__label">03 / SKILLS</div>
           <h2 className="skills__title">
-            ARSENAL
+            TECHNICAL
             <br />
-            <span>TECHNIQUE</span>
+            <span>ARSENAL</span>
           </h2>
         </motion.div>
 

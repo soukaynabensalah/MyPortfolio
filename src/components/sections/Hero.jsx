@@ -23,7 +23,7 @@ export default function Hero() {
   const role = useTypewriter(roles);
 
   return (
-    <section id="accueil" className="hero">
+    <section id="home" className="hero">
       {/* ThreeCanvas moved inside hero__right below */}
 
       {/* Grid lines */}
@@ -42,7 +42,7 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="hero__status"
           >
-            ── DISPONIBLE POUR PROJETS ──
+            ── AVAILABLE FOR PROJECTS ──
           </motion.div>
 
           <motion.h1
@@ -73,7 +73,7 @@ export default function Hero() {
             transition={{ delay: 1.2, duration: 0.8 }}
             style={{ marginTop: "1.5rem", color: "var(--muted)", maxWidth: "85%", lineHeight: "1.6", fontSize: "0.95rem" }}
           >
-            Passionnée par la création d'expériences web innovantes et intuitives. Je transforme vos idées en solutions numériques élégantes et performantes.
+            Passionate about creating innovative and intuitive web experiences. I transform your ideas into elegant and high-performing digital solutions.
           </motion.p>
 
           <motion.div
@@ -84,15 +84,15 @@ export default function Hero() {
           >
             <button
               className="hero__btn hero__btn--primary"
-              onClick={() => scrollToSection("projets")}
+              onClick={() => scrollToSection("projects")}
             >
-              VOIR MES PROJETS
+              VIEW MY PROJECTS
             </button>
             <button
               className="hero__btn hero__btn--secondary"
               onClick={() => scrollToSection("contact")}
             >
-              ME CONTACTER
+              CONTACT ME
             </button>
           </motion.div>
         </div>
