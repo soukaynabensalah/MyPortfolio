@@ -9,6 +9,7 @@ import Footer from "./components/layout/Footer";
 
 // Sections
 import Hero from "./components/sections/Hero";
+import About from "./components/sections/About";
 import Marquee from "./components/sections/Marquee";
 import Projects from "./components/sections/Projects";
 import Skills from "./components/sections/Skills";
@@ -32,9 +33,9 @@ export default function App() {
 
       <div ref={containerRef} className="scroll-container">
         <Hero />
-        <Marquee />
-        <Projects />
+        <About />
         <Skills />
+        <Projects />
         <Contact />
         <Footer />
       </div>

@@ -10,8 +10,8 @@ function scrollToSection(id) {
 
 const navConfig = [
   { label: "HOME", icon: Home, id: "home" },
-  { label: "PROJECTS", icon: Folder, id: "projects" },
   { label: "SKILLS", icon: Wrench, id: "skills" },
+  { label: "PROJECTS", icon: Folder, id: "projects" },
   { label: "CONTACT", icon: PenLine, id: "contact" },
 ];
 

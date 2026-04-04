@@ -73,7 +73,7 @@ export default function Hero() {
             transition={{ delay: 1.2, duration: 0.8 }}
             style={{ marginTop: "1.5rem", color: "var(--muted)", maxWidth: "85%", lineHeight: "1.6", fontSize: "0.95rem" }}
           >
-            Passionate about creating innovative and intuitive web experiences. I transform your ideas into elegant and high-performing digital solutions.
+            Building modern full-stack web experiences.
           </motion.p>
 
           <motion.div
