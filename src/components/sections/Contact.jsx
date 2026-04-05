@@ -11,6 +11,7 @@ export default function Contact() {
         viewport={{ once: true }}
       >
         <h2 className="contact-new__title">Contact</h2>
+        <div className="title-underline title-underline--center"></div>
         <p>A question? A project? Don't hesitate to reach out, I would love to chat with you!</p>
       </motion.div>
 

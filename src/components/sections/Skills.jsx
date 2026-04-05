@@ -44,6 +44,7 @@ export default function Skills() {
           <h2 className="skills-section__title">
             Skills
           </h2>
+          <div className="title-underline title-underline--center"></div>
         </motion.div>
 
         <div className="skills-pyramid">

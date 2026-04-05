@@ -26,6 +26,7 @@ export default function Projects() {
         <h2 className="projects-carousel__title">
           Projects
         </h2>
+        <div className="title-underline title-underline--center"></div>
       </motion.div>
 
       <motion.div
