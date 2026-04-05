@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Home, Folder, Wrench, PenLine, ExternalLink } from "lucide-react";
+import { User, Folder, Wrench, PenLine, ExternalLink } from "lucide-react";
 
 /**
  * Scrolls to the section with the given id.
@@ -9,10 +9,10 @@ function scrollToSection(id) {
 }
 
 const navConfig = [
-  { label: "HOME", icon: Home, id: "home" },
-  { label: "SKILLS", icon: Wrench, id: "skills" },
-  { label: "PROJECTS", icon: Folder, id: "projects" },
-  { label: "CONTACT", icon: PenLine, id: "contact" },
+  { label: "About", icon: User, id: "about" },
+  { label: "Skills", icon: Wrench, id: "skills" },
+  { label: "Projects", icon: Folder, id: "projects" },
+  { label: "Contact", icon: PenLine, id: "contact" },
 ];
 
 export default function Navbar({ activeSection }) {

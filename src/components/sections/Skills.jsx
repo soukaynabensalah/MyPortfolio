@@ -41,11 +41,8 @@ export default function Skills() {
           viewport={{ once: true }}
           className="skills-section__header"
         >
-          <div className="skills-section__label">03 / SKILLS</div>
           <h2 className="skills-section__title">
-            TECHNICAL
-            <br />
-            <span>ARSENAL</span>
+            Skills
           </h2>
         </motion.div>
 
