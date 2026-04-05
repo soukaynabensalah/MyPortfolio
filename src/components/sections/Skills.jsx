@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const techSkills = [
   { name: "HTML", icon: "html5" },
-  { name: "CSS", icon: "css3", color: "1572B6" },
+  { name: "CSS", icon: "css" },
   { name: "JavaScript", icon: "javascript" },
   { name: "React", icon: "react" },
   { name: "Php", icon: "php" },

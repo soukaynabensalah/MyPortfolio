@@ -1,5 +1,7 @@
 /* ── Portfolio Global Styles ─────────────────────────────────────────── */
 
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
 .title-underline {
   width: 40px;
   height: 2px;
@@ -12,7 +14,6 @@
 .title-underline--center {
   margin-inline: auto;
 }
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 *,
 *::before,
@@ -43,6 +44,14 @@ body {
   font-family: 'Space Mono', monospace;
   overflow-x: hidden;
   cursor: none;
+}
+
+/* Restore default cursor on touch devices (no mouse) */
+@media (hover: none) {
+  body,
+  body * {
+    cursor: default !important;
+  }
 }
 
 /* ── Custom Cursor ──────────────────────────────────────────────────── */
@@ -99,6 +108,13 @@ body::after {
   pointer-events: none;
   z-index: 9997;
   opacity: 0.4;
+}
+
+/* Disable grain on mobile for performance */
+@media (max-width: 768px) {
+  body::after {
+    display: none;
+  }
 }
 
 /* ── Keyframe Animations ────────────────────────────────────────────── */
@@ -306,6 +322,78 @@ body::after {
 .floating-nav__resume:hover {
   color: var(--text);
   background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Navbar Tablet ─────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .floating-nav {
+    top: 1.5rem;
+  }
+
+  .floating-nav__inner {
+    gap: 0.3rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .floating-nav__link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .floating-nav__resume {
+    font-size: 0.7rem;
+    padding: 0 0.8rem;
+    height: 40px;
+  }
+}
+
+/* ── Navbar Mobile ─────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .floating-nav {
+    top: 1rem;
+  }
+
+  .floating-nav__inner {
+    gap: 0.15rem;
+    padding: 0.4rem 0.6rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .floating-nav__link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .floating-nav__link svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .floating-nav__tooltip {
+    display: none;
+  }
+
+  .floating-nav__divider {
+    height: 18px;
+    margin: 0 0.1rem;
+  }
+
+  /* Hide Resume text, keep only as a compact icon */
+  .floating-nav__resume {
+    font-size: 0;
+    gap: 0;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+  }
+
+  .floating-nav__resume svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 /* ── Scroll Container ───────────────────────────────────────────────── */
@@ -533,11 +621,33 @@ body::after {
 
 /* ── Hero Responsive ────────────────────────────────────────────────── */
 
+/* ── Hero Tablet ────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .hero__layout {
+    max-width: 100%;
+    padding: 0 2rem;
+    gap: 1rem;
+  }
+
+  .hero__right {
+    height: 450px;
+    min-width: 280px;
+    flex: 1 1 40%;
+  }
+
+  .hero__title {
+    font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+  }
+}
+
+/* ── Hero Mobile ───────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .hero__layout {
     flex-direction: column;
     padding: 0 1.2rem;
-    padding-top: 5rem;
+    padding-top: 6.5rem;
     text-align: center;
   }
 
@@ -546,10 +656,14 @@ body::after {
     max-width: 100%;
   }
 
+  .hero__left::before {
+    display: none;
+  }
+
   .hero__right {
     min-width: unset;
     width: 100%;
-    height: 350px;
+    height: 300px;
   }
 
   .hero__status {
@@ -558,12 +672,16 @@ body::after {
   }
 
   .hero__title {
-    font-size: clamp(2.2rem, 12vw, 3.5rem);
+    font-size: clamp(2rem, 10vw, 3rem);
     line-height: 0.95;
   }
 
   .hero__title-outline {
     -webkit-text-stroke-width: 1.5px;
+  }
+
+  .hero__role {
+    font-size: 0.85rem;
   }
 
   .hero__buttons {
@@ -591,6 +709,23 @@ body::after {
 
   .hero__grid {
     opacity: 0.5;
+  }
+
+  .hero__scroll-indicator {
+    bottom: 1.5rem;
+    font-size: 0.65rem;
+  }
+}
+
+/* ── Hero Small Phone ──────────────────────────────────────────────── */
+
+@media (max-width: 380px) {
+  .hero__title {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+  }
+
+  .hero__right {
+    height: 250px;
   }
 }
 
@@ -910,6 +1045,12 @@ body::after {
 
 /* ── Projects Carousel Responsive ──────────────────────────────────── */
 
+@media (max-width: 1024px) {
+  .projects-swiper .swiper-slide {
+    width: 340px;
+  }
+}
+
 @media (max-width: 768px) {
   .projects-carousel {
     padding: 5rem 0;
@@ -920,8 +1061,16 @@ body::after {
     margin-bottom: 2rem;
   }
 
+  .projects-carousel__title {
+    font-size: 1.6rem;
+  }
+
   .projects-swiper .swiper-slide {
-    width: 300px;
+    width: 280px;
+  }
+
+  .projects-slide-card {
+    backdrop-filter: none;
   }
 
   .projects-slide-card__image-wrapper {
@@ -929,16 +1078,34 @@ body::after {
   }
 
   .projects-slide-card__content {
-    padding: 1.2rem 1.4rem 1.6rem;
+    padding: 1.2rem 1.2rem 1.4rem;
   }
 
   .projects-slide-card__title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .projects-slide-card__desc {
+    font-size: 0.72rem;
   }
 
   .projects-swiper .swiper-button-next,
   .projects-swiper .swiper-button-prev {
     display: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .projects-swiper .swiper-slide {
+    width: 250px;
+  }
+
+  .projects-slide-card__image-wrapper {
+    height: 140px;
+  }
+
+  .projects-slide-card__content {
+    padding: 1rem;
   }
 }
 
@@ -1088,7 +1255,14 @@ body::after {
 
 @media (max-width: 768px) {
   .project-modal-backdrop {
-    padding: 1rem;
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .project-modal {
+    border-radius: 20px 20px 0 0;
+    max-height: 92vh;
+    max-width: 100%;
   }
   
   .project-modal__content {
@@ -1096,11 +1270,26 @@ body::after {
   }
   
   .project-modal__image-wrapper {
-    height: 200px;
+    height: 180px;
   }
   
   .project-modal__title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+  }
+
+  .project-modal__desc {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-modal__links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .project-modal__link {
+    justify-content: center;
+    padding: 0.9rem 1.5rem;
   }
 }
 
@@ -1228,10 +1417,75 @@ body::after {
   letter-spacing: 0.02em;
 }
 
+/* ── Skills Tablet ──────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .skills-section {
+    padding: 6rem 2rem;
+  }
+
+  .skills-section__header {
+    margin-bottom: 3rem;
+  }
+
+  .skills-pyramid__row {
+    flex-wrap: wrap;
+  }
+
+  .skill-card {
+    width: 110px;
+  }
+}
+
+/* ── Skills Mobile ─────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
+  .skills-section {
+    padding: 4rem 1rem;
+  }
+
+  .skills-section__title {
+    font-size: 1.6rem;
+  }
+
+  .skills-section__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .skills-pyramid {
+    gap: 0.8rem;
+  }
+
+  .skills-pyramid__row {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
   .skill-card {
     width: calc(33.33% - 0.6rem);
     padding: 0.8rem 0.3rem;
+    backdrop-filter: none;
+  }
+
+  .skill-card__name {
+    font-size: 0.7rem;
+  }
+
+  .skill-card__icon-wrapper {
+    margin-bottom: 0.5rem;
+    width: 28px;
+    height: 28px;
+  }
+
+  .skill-card__icon-wrapper img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .skill-card {
+    width: calc(50% - 0.5rem);
   }
 }
 
@@ -1380,26 +1634,72 @@ body::after {
   background: var(--accent);
 }
 
+/* ── Contact Tablet ─────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .contact-new {
+    padding: 5rem 2rem;
+  }
+
+  .contact-new__card {
+    max-width: 650px;
+  }
+}
+
+/* ── Contact Mobile ────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .contact-new {
-    padding: 4rem 1.5rem;
+    padding: 4rem 1rem;
+    gap: 2rem;
+  }
+
+  .contact-new__header {
+    font-size: 0.95rem;
+  }
+
+  .contact-new__title {
+    font-size: 1.6rem;
   }
   
   .contact-new__card {
     flex-direction: column;
+    backdrop-filter: none;
   }
   
   .contact-new__form {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.2rem;
+    gap: 1rem;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .contact-new__input,
+  .contact-new__textarea {
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+  }
+
+  .contact-new__textarea {
+    min-height: 120px;
+  }
+
+  .contact-new__btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.8rem;
   }
   
   .contact-new__socials {
     flex-direction: row;
-    padding: 2rem;
+    padding: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .contact-new__social-icon {
+    width: 42px;
+    height: 42px;
   }
 }
 
@@ -1429,6 +1729,20 @@ body::after {
   letter-spacing: 0.1em;
 }
 
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    gap: 0.6rem;
+  }
+
+  .footer__copyright {
+    font-size: 0.58rem;
+    order: 1;
+  }
+}
+
 /* ── Three.js Canvas ────────────────────────────────────────────────── */
 /* Pushed right & slightly down to avoid center text conflict */
 
@@ -1437,6 +1751,12 @@ body::after {
   height: 100%;
   z-index: 1;
   opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .three-canvas {
+    opacity: 0.85;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1532,13 +1852,38 @@ body::after {
   gap: 1.2rem;
 }
 
-@media (max-width: 768px) {
+/* ── About Tablet ───────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
   .about {
-    padding: 4rem 1.5rem;
+    padding: 5rem 2rem;
   }
 
   .about__card {
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 3rem;
+  }
+}
+
+/* ── About Mobile ──────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .about {
+    padding: 4rem 1rem;
+  }
+
+  .about__card {
+    padding: 1.8rem 1.2rem;
+    backdrop-filter: none;
+  }
+
+  .about__header {
+    margin-bottom: 1.5rem;
+    gap: 0.8rem;
+  }
+
+  .about__icon {
+    width: 22px;
+    height: 22px;
   }
 
   .about__title {
@@ -1546,6 +1891,8 @@ body::after {
   }
 
   .about__text {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    gap: 1rem;
   }
 }

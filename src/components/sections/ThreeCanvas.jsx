@@ -122,6 +122,8 @@ export default function ThreeCanvas() {
       const canvas = canvasRef.current;
       if (!canvas) return;
 
+      const isMobile = window.innerWidth < 768;
+
       // ── Load all tech icons from devicon CDN ─────────────────────────
       const iconImages = await Promise.all(
         techStack.map((tech) =>
@@ -129,8 +131,14 @@ export default function ThreeCanvas() {
         )
       );
 
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: !isMobile,
+        powerPreference: "high-performance",
+      });
+      // Cap pixel ratio at 2 to save GPU on retina mobile (3x devices)
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
 
       const scene = new THREE.Scene();
@@ -142,9 +150,9 @@ export default function ThreeCanvas() {
       );
       camera.position.z = 5;
 
-      // ── Background particles (subtle ambient) ──────────────────────
+      // ── Background particles (reduced on mobile) ───────────────────
       const particleGeo = new THREE.BufferGeometry();
-      const particleCount = 600;
+      const particleCount = isMobile ? 200 : 600;
       const positions = new Float32Array(particleCount * 3);
       for (let i = 0; i < particleCount * 3; i++) {
         positions[i] = (Math.random() - 0.5) * 25;
@@ -171,7 +179,7 @@ export default function ThreeCanvas() {
       const wireframeGroup = new THREE.Group();
       sceneGroup.add(wireframeGroup);
 
-      const geoSphere = new THREE.IcosahedronGeometry(SPHERE_RADIUS, 2);
+      const geoSphere = new THREE.IcosahedronGeometry(SPHERE_RADIUS, isMobile ? 1 : 2);
       const matSphere = new THREE.MeshBasicMaterial({
         color: 0x7affd4,
         wireframe: true,
@@ -224,19 +232,33 @@ export default function ThreeCanvas() {
         iconSprites.push(sprite);
       });
 
-      // ── Mouse interaction ──────────────────────────────────────────
+      // ── Mouse interaction (skip on touch devices) ──────────────────
       let mx = 0;
       let my = 0;
       const handleMouseMove = (e) => {
         mx = (e.clientX / window.innerWidth - 0.5) * 2;
         my = (e.clientY / window.innerHeight - 0.5) * 2;
       };
-      window.addEventListener("mousemove", handleMouseMove);
+      if (!isMobile) {
+        window.addEventListener("mousemove", handleMouseMove);
+      }
+
+      // ── Intersection Observer: pause when not visible ──────────────
+      let isVisible = true;
+      const observer = new IntersectionObserver(
+        ([entry]) => { isVisible = entry.isIntersecting; },
+        { threshold: 0.1 }
+      );
+      observer.observe(canvas);
 
       // ── Animation loop ─────────────────────────────────────────────
       let frame;
       const animate = () => {
         frame = requestAnimationFrame(animate);
+
+        // Skip rendering when offscreen for performance
+        if (!isVisible) return;
+
         const t = Date.now() * 0.001;
 
         // Wireframe rotates slowly (icons DON'T move with it)
@@ -279,6 +301,7 @@ export default function ThreeCanvas() {
 
       cleanup = () => {
         cancelAnimationFrame(frame);
+        observer.disconnect();
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("resize", handleResize);
         renderer.dispose();
