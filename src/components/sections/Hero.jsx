@@ -71,7 +71,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            style={{ marginTop: "1.5rem", color: "var(--muted)", maxWidth: "85%", lineHeight: "1.6", fontSize: "0.95rem" }}
+            className="hero__desc"
+            style={{ color: "var(--muted)", lineHeight: "1.6" }}
           >
             Building modern full-stack web experiences.
           </motion.p>
@@ -118,7 +119,6 @@ export default function Hero() {
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         className="hero__scroll-indicator"
       >
-        <span>SCROLL</span>
         <div className="hero__scroll-icon">
           <Mouse size={24} strokeWidth={1.5} />
           <motion.div

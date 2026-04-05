@@ -148,7 +148,7 @@ export default function ThreeCanvas() {
         0.1,
         1000
       );
-      camera.position.z = 5;
+      camera.position.z = isMobile ? 3.5 : 5;
 
       // ── Background particles (reduced on mobile) ───────────────────
       const particleGeo = new THREE.BufferGeometry();

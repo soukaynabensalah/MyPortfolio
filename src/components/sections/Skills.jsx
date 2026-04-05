@@ -31,6 +31,18 @@ const pyramidRows = [
   techSkills.slice(16, 20)
 ];
 
+// Mobile rows: 3, 2, 3, 2, 3, 2, 3, 2 = 20
+const mobileRows = [
+  techSkills.slice(0, 3),
+  techSkills.slice(3, 5),
+  techSkills.slice(5, 8),
+  techSkills.slice(8, 10),
+  techSkills.slice(10, 13),
+  techSkills.slice(13, 15),
+  techSkills.slice(15, 18),
+  techSkills.slice(18, 20)
+];
+
 export default function Skills() {
   return (
     <section id="skills" className="skills-section">
@@ -49,10 +61,10 @@ export default function Skills() {
 
         <div className="skills-pyramid">
           {pyramidRows.map((row, rowIndex) => (
-            <div key={rowIndex} className="skills-pyramid__row">
+            <div key={`desktop-${rowIndex}`} className="skills-pyramid__row desktop-row">
               {row.map((skill, i) => (
                 <motion.div
-                  key={skill.name}
+                  key={`desktop-skill-${skill.name}`}
                   className="skill-card"
                   initial={{ opacity: 0, scale: 0.9, y: 20 }}
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -64,7 +76,28 @@ export default function Skills() {
                     <img src={`https://cdn.simpleicons.org/${skill.icon}${skill.color ? `/${skill.color}` : ""}`} width="28" height="28" alt={skill.name} />
                   </div>
                   <h3 className="skill-card__name">{skill.name}</h3>
-                  <p className="skill-card__desc">{skill.title}</p>
+                </motion.div>
+              ))}
+            </div>
+          ))}
+
+          {/* Mobile Layout (3-2-3-2...) */}
+          {mobileRows.map((row, rowIndex) => (
+            <div key={`mobile-${rowIndex}`} className="skills-pyramid__row mobile-row">
+              {row.map((skill, i) => (
+                <motion.div
+                  key={`mobile-skill-${skill.name}`}
+                  className="skill-card"
+                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: (rowIndex * 0.1) + (i * 0.05) }}
+                >
+                  <div className="skill-card__icon-wrapper">
+                    <div className="skill-card__glow"></div>
+                    <img src={`https://cdn.simpleicons.org/${skill.icon}${skill.color ? `/${skill.color}` : ""}`} width="28" height="28" alt={skill.name} />
+                  </div>
+                  <h3 className="skill-card__name">{skill.name}</h3>
                 </motion.div>
               ))}
             </div>

@@ -410,6 +410,8 @@ body::after {
 
 .hero {
   height: 100vh;
+  /* Use dvh for mobile to avoid native UI issues */
+  height: 100dvh;
   position: relative;
   display: flex;
   align-items: center;
@@ -539,6 +541,13 @@ body::after {
   color: var(--accent);
 }
 
+/* Default hero desc */
+.hero__desc {
+  margin-top: 1.5rem;
+  max-width: 85%;
+  font-size: 0.95rem;
+}
+
 /* CTA buttons: clear hierarchy primary > secondary */
 .hero__buttons {
   margin-top: 2.5rem;
@@ -617,6 +626,9 @@ body::after {
 .hero__scroll-icon {
   margin-top: 0.25rem;
   color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ── Hero Responsive ────────────────────────────────────────────────── */
@@ -647,60 +659,73 @@ body::after {
   .hero__layout {
     flex-direction: column;
     padding: 0 1.2rem;
-    padding-top: 6.5rem;
+    padding-top: 5rem;
     text-align: center;
   }
 
   .hero__left {
+    display: contents;
     text-align: center;
-    max-width: 100%;
   }
 
   .hero__left::before {
     display: none;
   }
 
-  .hero__right {
-    min-width: unset;
-    width: 100%;
-    height: 300px;
-  }
-
   .hero__status {
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
+    order: 1;
   }
 
   .hero__title {
-    font-size: clamp(2rem, 10vw, 3rem);
+    order: 1;
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
     line-height: 0.95;
   }
 
   .hero__title-outline {
+    order: 1;
     -webkit-text-stroke-width: 1.5px;
   }
 
   .hero__role {
+    order: 1;
+    font-size: 0.8rem;
+  }
+
+  .hero__desc {
+    order: 1;
     font-size: 0.85rem;
+    max-width: 100%;
+    margin: 0.5rem auto 0;
+  }
+
+  .hero__right {
+    min-width: unset;
+    width: 100%;
+    height: 200px;
+    order: 2; /* Put sphere AFTER text */
+    margin: 0.5rem 0;
   }
 
   .hero__buttons {
-    flex-direction: column;
+    order: 3; /* Put buttons AFTER sphere */
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
-  }
-
-  .hero__btn--primary {
-    padding: 0.9rem 2rem;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
     width: 100%;
-    max-width: 280px;
   }
 
+  .hero__btn--primary,
   .hero__btn--secondary {
-    padding: 0.7rem 1.6rem;
-    width: 100%;
-    max-width: 280px;
+    padding: 0.8rem 0.6rem;
+    font-size: 0.65rem;
+    flex: 1;
+    width: auto;
+    text-align: center;
+    max-width: 160px;
+    white-space: nowrap;
   }
 
   .hero__corner {
@@ -721,11 +746,11 @@ body::after {
 
 @media (max-width: 380px) {
   .hero__title {
-    font-size: clamp(1.8rem, 9vw, 2.4rem);
+    font-size: clamp(1.4rem, 7vw, 2rem);
   }
 
   .hero__right {
-    height: 250px;
+    height: 180px;
   }
 }
 
@@ -1439,7 +1464,17 @@ body::after {
 
 /* ── Skills Mobile ─────────────────────────────────────────────────── */
 
+.mobile-row {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
+  .desktop-row {
+    display: none !important;
+  }
+  .mobile-row {
+    display: flex !important;
+  }
   .skills-section {
     padding: 4rem 1rem;
   }
