@@ -141,16 +141,6 @@ export default function Projects() {
               <div className="project-modal__content">
                 <h3 className="project-modal__title">{selectedProject.title}</h3>
                 
-                <div className="project-modal__tags">
-                  {selectedProject.tags.map((tag) => (
-                    <span key={tag} className="project-modal__tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                
-                <p className="project-modal__desc">{selectedProject.longDesc || selectedProject.desc}</p>
-                
                 <div className="project-modal__links">
                   {selectedProject.github && (
                     <a href={selectedProject.github} target="_blank" rel="noreferrer" className="project-modal__link">
@@ -161,10 +151,14 @@ export default function Projects() {
                   {selectedProject.link && (
                     <a href={selectedProject.link} target="_blank" rel="noreferrer" className="project-modal__link project-modal__link--primary">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                      Live Project
+                      Demo
                     </a>
                   )}
                 </div>
+                
+                <p className="project-modal__desc">{selectedProject.longDesc || selectedProject.desc}</p>
+                
+
               </div>
             </motion.div>
           </motion.div>

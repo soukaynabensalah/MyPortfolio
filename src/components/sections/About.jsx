@@ -26,7 +26,7 @@ export default function About() {
           </div>
           <div className="about__text">
             <p>
-              I’m a passionate web developer focused on building modern, high-performance applications. I specialize in backend development, creating scalable, secure, and efficient systems that power seamless user experiences.
+              I’m a passionate <strong>Web Developer</strong> focused on building modern, high-performance applications. I work across both frontend and backend, creating scalable, secure, and efficient systems that deliver seamless user experiences.
             </p>
             <p>
               I follow Agile principles, valuing collaboration, adaptability, and continuous improvement. I enjoy solving complex technical challenges and turning ideas into clean, reliable solutions.
