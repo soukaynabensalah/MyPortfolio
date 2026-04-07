@@ -1,8 +1,8 @@
 // ── Portfolio Data ─────────────────────────────────────────────────────
 
 import projectnexora from "../assets/projects/Nexora/img1.png";
-import projectContactXtract from "../assets/projects/ContactXtract/img1.png";
-import projectRestaurant_manager from "../assets/projects/Restaurant_manager/img1.png";
+import projectContactXtract from "../assets/projects/contactXtract/img1.png";
+import projectRestaurant_manager from "../assets/projects/restaurant_manager/img1.png";
 import projectCRM from "../assets/projects/crm/img1.webp";
 import projectRestaurant_management from "../assets/projects/restaurante_management/img1.png";
 
